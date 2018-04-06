@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import static javax.transaction.Transactional.TxType.*;
 
@@ -17,17 +19,17 @@ public class BookRepository {
 
 
     @Transactional(REQUIRED)
-    public Book create(Book book){
+    public Book create(@NotNull Book book){
        entityManager.persist(book);
        return book;
     }
 
-    public Book find(Long id){
+    public Book find(@NotNull Long id){
         return entityManager.find(Book.class,id);
     }
 
     @Transactional(REQUIRED)
-    public void remove(Long id){
+    public void remove(@NotNull @Min(1) Long id){
         entityManager.remove(entityManager.getReference(Book.class,id));
     }
 

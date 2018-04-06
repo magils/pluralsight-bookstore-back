@@ -1,6 +1,9 @@
 package com.mgil.courses.pluralsight.bookstore.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -9,23 +12,35 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotNull
     @Column(length = 500)
     private String title;
 
+    @NotNull
+    @Size(min=1 ,max = 10000)
     private String description;
+
     private Language language;
 
+    @Min(1)
     @Column(name="unit_cost")
     private Float unitCost;
+
+
+    @Size(min = 1 , max = 50)
     private String isbn;
 
+    @NotNull
     @Column(name="publication_date")
     @Temporal(TemporalType.DATE)
     private Date publicationDate;
 
+    @Min(1)
     @Column(name="nb_of_pages")
     private Integer nbOfPages;
 
+    @NotNull
     @Column(name="image_url")
     private String imageUrl;
 
