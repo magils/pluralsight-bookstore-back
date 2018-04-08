@@ -1,7 +1,5 @@
 package com.mgil.courses.pluralsight.bookstore.model;
 
 public enum Language {
-    SPANISH,
-    ENGLISH,
-    FRENCH;
+    ENGLISH, FRENCH, SPANISH, PORTUGUESE, ITALIAN, FINISH, GERMAN, DEUTSCH, RUSSIAN
 }

@@ -1,5 +1,8 @@
 package com.mgil.courses.pluralsight.bookstore.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -7,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@ApiModel("Book")
 public class Book {
 
     @Id
@@ -28,10 +32,11 @@ public class Book {
     private Float unitCost;
 
 
+    @ApiModelProperty("ISBN Number")
     @Size(min = 1 , max = 50)
     private String isbn;
 
-    @NotNull
+    //@NotNull
     @Column(name="publication_date")
     @Temporal(TemporalType.DATE)
     private Date publicationDate;
@@ -41,9 +46,23 @@ public class Book {
     private Integer nbOfPages;
 
     @NotNull
+    @ApiModelProperty("URL of the image cover")
     @Column(name="image_url")
     private String imageUrl;
 
+    public Book() {
+    }
+
+    public Book(String title, String description, Language language, Float unitCost, String isbn, Date publicationDate, Integer nbOfPages, String imageUrl) {
+        this.title = title;
+        this.description = description;
+        this.language = language;
+        this.unitCost = unitCost;
+        this.isbn = isbn;
+        this.publicationDate = publicationDate;
+        this.nbOfPages = nbOfPages;
+        this.imageUrl = imageUrl;
+    }
 
     public Long getId() {
         return id;
